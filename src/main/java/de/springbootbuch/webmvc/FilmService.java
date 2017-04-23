@@ -52,4 +52,8 @@ public class FilmService {
 		this.films.add(film);
 		return film;
 	}
+
+	public void deleteFilm(String id) {
+		this.films.removeIf(f -> f.getId().equals(id));
+	}
 }

@@ -19,6 +19,11 @@
                 <tr th:each="film : ${films}">
                     <td th:text="${film.title}">Einer flog über das Kuckucksnest </td>
                     <td><a href="#" th:href="@{/films/byYear2/{year}(year=${film.releaseYear})}" th:text="${film.releaseYear}">1975</a></td>
+                    <td>
+                        <form method="POST" th:method="DELETE" th:action="@{/films/{id}(id=${film.id})}">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             </tbody>
         </table>

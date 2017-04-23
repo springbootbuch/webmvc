@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -89,5 +90,13 @@ public class FilmController {
 			rv = "redirect:/films";
 		}
 		return rv;
+	}
+	
+	@DeleteMapping("/{id}")
+	public String deleteFilm(
+		@PathVariable String id
+	) {
+		this.filmService.deleteFilm(id);
+		return "redirect:/films";
 	}
 }
