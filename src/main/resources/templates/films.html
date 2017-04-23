@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      th:lang="${#locale.language}">
+    <head>
+        <meta charset="utf-8" />
+        <title>Films</title>
+    </head>
+    <body>
+        <table>
+            <thead>
+                <tr>
+                    <th th:text="#{title}">title</th>
+                    <th th:text="#{releaseYear}">releaseYear</th>
+                </tr>
+            </thead>
+            <tfoot />
+            <tbody>
+                <tr th:each="film : ${films}">
+                    <td th:text="${film.title}">Einer flog über das Kuckucksnest </td>
+                    <td><a href="#" th:href="@{/films/byYear2/{year}(year=${film.releaseYear})}" th:text="${film.releaseYear}">1975</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="#" th:href="@{/films/new}">new</a>
+    </body>
+</html>

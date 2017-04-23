@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      th:lang="${#locale.language}">
+    <head>
+        <meta charset="utf-8" />
+        <title>New</title>
+    </head>
+    <body>
+        <form action="" th:action="@{/films/}" th:object="${filmForm}" method="POST">
+            <label for="title" th:text="#{title}">title</label>
+            <input type="text" th:field="*{title}" />
+            <br />
+            <label for="releaseYear" th:text="#{releaseYear}">releaseYear</label>
+            <input type="date" th:field="*{releaseDate}" />
+            <br />
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>

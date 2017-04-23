@@ -24,9 +24,9 @@ public class ShopControllerAlt {
 		this.shoppingCart = shoppingCart;
 	}
 	
-	@GetMapping("/films")
+	@GetMapping("/cart")
 	@ResponseBody
-	public List<Film> film() {
+	public List<Film> cart() {
 		return this.shoppingCart.get().getFilmsToRent();
 	}
 }
