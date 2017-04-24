@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * @author @rotnroll666
  */
 @Component
-public class StringToYearConvertor implements Converter<String, Year> {
+public class StringToYearConverter implements Converter<String, Year> {
 	@Override
 	public Year convert(String source) {
 		return Year.parse(source);

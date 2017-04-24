@@ -1,6 +1,7 @@
 package de.springbootbuch.webmvc;
 
 import java.time.Year;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -32,5 +33,27 @@ public class Film {
 
 	public Year getReleaseYear() {
 		return releaseYear;
+	}
+
+	@Override
+	public int hashCode() {
+		int hash = 5;
+		hash = 29 * hash + Objects.hashCode(this.id);
+		return hash;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final Film other = (Film) obj;
+		return Objects.equals(this.id, other.id);
 	}
 }

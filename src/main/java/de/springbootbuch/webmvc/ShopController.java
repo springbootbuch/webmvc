@@ -1,10 +1,10 @@
 package de.springbootbuch.webmvc;
 
-import java.util.List;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * Part of springbootbuch.de.
@@ -14,18 +14,34 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 public class ShopController {
-	
-	private final ObjectFactory<ShoppingCart> shoppingCart;
 
+	private final FilmService filmService;
+
+	private final ObjectFactory<ShoppingCart> shoppingCart;
+	
 	public ShopController(
-		ObjectFactory<ShoppingCart> shoppingCart) {
+		FilmService filmService,
+		ObjectFactory<ShoppingCart> shoppingCart		
+	) {
+		this.filmService = filmService;
 		this.shoppingCart = shoppingCart;
 	}
 	
-	@GetMapping("/cart")
-	@ResponseBody
-	public List<Film> cart() {	
-		return this.shoppingCart
-			.getObject().getFilmsToRent();
+	@PostMapping("/cart/{id}")
+	public String addToCart(
+		@PathVariable String id
+	) {
+		this.shoppingCart.getObject()
+			.add(this.filmService.getFilm(id));
+		return "redirect:/films";
+	}
+	
+	@DeleteMapping("/cart/{id}")
+	public String removeFromCart(
+		@PathVariable String id
+	) {
+		this.shoppingCart.getObject()
+			.removeById(id);		
+		return "redirect:/films";
 	}
 }

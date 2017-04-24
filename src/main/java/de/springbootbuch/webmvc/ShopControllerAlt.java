@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author Michael J. Simons
  * @author @rotnroll666
  */
-@RequestMapping("/shopAlt")
 @Controller
+@RequestMapping("/shopAlt")
 public class ShopControllerAlt {
 	
 	private final Provider<ShoppingCart> shoppingCart;
@@ -27,6 +27,6 @@ public class ShopControllerAlt {
 	@GetMapping("/cart")
 	@ResponseBody
 	public List<Film> cart() {
-		return this.shoppingCart.get().getFilmsToRent();
+		return this.shoppingCart.get().getContent();
 	}
 }

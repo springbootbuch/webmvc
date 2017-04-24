@@ -7,6 +7,7 @@
         <title>Films</title>
     </head>
     <body>
+        <p>Available</p>
         <table>
             <thead>
                 <tr>
@@ -20,13 +21,33 @@
                     <td th:text="${film.title}">Einer flog über das Kuckucksnest </td>
                     <td><a href="#" th:href="@{/films/byYear2/{year}(year=${film.releaseYear})}" th:text="${film.releaseYear}">1975</a></td>
                     <td>
-                        <form method="POST" th:method="DELETE" th:action="@{/films/{id}(id=${film.id})}">
+                        <form method="POST" th:action="@{/cart/{id}(id=${film.id})}">
+                            <button type="submit">AddToCart</button>
+                        </form>
+                    </td>                  
+                </tr>
+            </tbody>
+        </table>
+        <a href="#" th:href="@{/films/new}">new</a>
+        <hr />
+        <p>Selected</p>
+        <table>
+            <thead>
+                <tr>
+                    <th th:text="#{title}">title</th>                    
+                </tr>
+            </thead>
+            <tfoot />
+            <tbody>
+                <tr th:each="film : ${@shoppingCart.content}">
+                    <td th:text="${film.title}">Einer flog über das Kuckucksnest </td>                    
+                    <td>
+                        <form method="POST" th:method="DELETE" th:action="@{/cart/{id}(id=${film.id})}">
                             <button type="submit">Delete</button>
                         </form>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <a href="#" th:href="@{/films/new}">new</a>
     </body>
 </html>

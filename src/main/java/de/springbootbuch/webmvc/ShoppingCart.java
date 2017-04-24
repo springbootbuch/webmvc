@@ -1,10 +1,8 @@
 package de.springbootbuch.webmvc;
 
-import java.time.Year;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
-import static java.util.stream.Collectors.toList;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
@@ -17,21 +15,19 @@ import org.springframework.web.context.annotation.SessionScope;
 @Component
 @SessionScope
 public class ShoppingCart {
-	private final List<Film> filmsToRent;
-
-	public ShoppingCart() {
-		this.filmsToRent = ThreadLocalRandom.current()
-			.ints(10, 1900, 2020)
-			.mapToObj(
-				i -> new Film("Best of " + i, Year.of(i)))
-			.collect(toList());
-	}
+	private final List<Film> filmsToRent
+		= new ArrayList<>();
 	
-	public void addFilm(final Film film) {
+	public void add(final Film film) {
 		this.filmsToRent.add(film);
 	}
 	
-	public List<Film> getFilmsToRent() {
+	public void removeById(final String id) {		
+		this.filmsToRent
+			.removeIf(film -> film.getId().equals(id));
+	}
+	
+	public List<Film> getContent() {
 		return Collections
 			.unmodifiableList(filmsToRent);
 	}

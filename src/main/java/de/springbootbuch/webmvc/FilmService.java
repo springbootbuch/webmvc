@@ -53,7 +53,10 @@ public class FilmService {
 		return film;
 	}
 
-	public void deleteFilm(String id) {
-		this.films.removeIf(f -> f.getId().equals(id));
-	}
+	public Film getFilm(String id) {
+		return this.films.stream()
+			.filter(f -> f.getId().equals(id))
+			.findFirst()
+			.orElseThrow(NoSuchFilmException::new);
+	}	
 }
