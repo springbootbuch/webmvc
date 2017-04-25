@@ -1,6 +1,8 @@
 package de.springbootbuch.webmvc;
 
 import java.time.Year;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -12,10 +14,12 @@ import java.util.UUID;
  */
 public class Film {
 	private final String id;
-	
+
 	private final String title;
-	
+
 	private final Year releaseYear;
+
+	private final List<Actor> actors = new ArrayList<>();
 
 	public Film(String title, Year releaseYear) {
 		this.id = UUID.randomUUID().toString();
@@ -33,6 +37,10 @@ public class Film {
 
 	public Year getReleaseYear() {
 		return releaseYear;
+	}
+
+	public List<Actor> getActors() {
+		return actors;
 	}
 
 	@Override

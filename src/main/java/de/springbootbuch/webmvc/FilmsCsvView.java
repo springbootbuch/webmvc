@@ -30,7 +30,8 @@ public class FilmsCsvView extends AbstractView {
 		HttpServletRequest request, 
 		HttpServletResponse response
 	) throws Exception {
-		final List<Film> films = (List<Film>) model.getOrDefault("films", new ArrayList<>());
+		final List<Film> films = (List<Film>) 
+			model.getOrDefault("films", new ArrayList<>());
 		response.setContentType(UTF_8.name());
 		try(Writer out = new OutputStreamWriter(response.getOutputStream(), UTF_8)) {
 			for(Film film : films) {
