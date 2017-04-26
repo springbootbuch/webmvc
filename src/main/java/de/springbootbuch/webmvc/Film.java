@@ -22,7 +22,11 @@ public class Film {
 	private final List<Actor> actors = new ArrayList<>();
 
 	public Film(String title, Year releaseYear) {
-		this.id = UUID.randomUUID().toString();
+		this(UUID.randomUUID().toString(), title, releaseYear);
+	}
+	
+	Film(final String id, String title, Year releaseYear) {
+		this.id = id;
 		this.title = title;
 		this.releaseYear = releaseYear;
 	}
