@@ -23,8 +23,11 @@ public class Application {
 	public WebMvcConfigurer viewControllers() {
 		return new WebMvcConfigurer() {
 			@Override
-			public void addViewControllers(ViewControllerRegistry registry) {
-				registry.addViewController("/").setViewName("forward:/films");
+			public void addViewControllers(
+				ViewControllerRegistry reg) {
+				reg
+					.addViewController("/")
+					.setViewName("forward:/films");
 			}
 		};
 	}
