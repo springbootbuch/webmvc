@@ -5,12 +5,18 @@
     <head>
         <meta charset="utf-8" />
         <title>Films</title>
+        <style>
+            img.cover {
+                max-width:80px
+            }
+        </style>
     </head>
     <body>
         <p>Available</p>
         <table>
             <thead>
                 <tr>
+                    <th>&#160;</th>
                     <th th:text="#{title}">title</th>
                     <th th:text="#{releaseYear}">releaseYear</th>
                 </tr>
@@ -18,13 +24,22 @@
             <tfoot />
             <tbody>
                 <tr th:each="film : ${films}">
+                    <td>
+                        <img class="cover" th:src="@{/films/{id}/cover(id=${film.id})}" /><br />
+                        <form method="POST" th:action="@{/films/addCover}" enctype="multipart/form-data">
+                            <input type="hidden" name="id" th:value="${film.id}" />
+                            <input type="file" name="cover" /><br />
+                            <button type="submit">Update</button>
+                        </form>
+                    </td>
+                    </td>
                     <td th:text="${film.title}">Einer flog über das Kuckucksnest </td>
                     <td><a href="#" th:href="@{/films/byYear2/{year}(year=${film.releaseYear})}" th:text="${film.releaseYear}">1975</a></td>
                     <td>
                         <form method="POST" th:action="@{/cart/{id}(id=${film.id})}">
                             <button type="submit">AddToCart</button>
                         </form>
-                    </td>                  
+                    </td>
                 </tr>
             </tbody>
         </table>

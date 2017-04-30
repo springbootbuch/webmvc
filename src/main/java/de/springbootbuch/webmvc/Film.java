@@ -1,8 +1,6 @@
 package de.springbootbuch.webmvc;
 
 import java.time.Year;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -19,7 +17,7 @@ public class Film {
 
 	private final Year releaseYear;
 
-	private final List<Actor> actors = new ArrayList<>();
+	private Cover cover;
 
 	public Film(String title, Year releaseYear) {
 		this(UUID.randomUUID().toString(), title, releaseYear);
@@ -43,8 +41,12 @@ public class Film {
 		return releaseYear;
 	}
 
-	public List<Actor> getActors() {
-		return actors;
+	public Cover getCover() {
+		return cover;
+	}
+
+	public void setCover(Cover cover) {
+		this.cover = cover;
 	}
 
 	@Override
