@@ -78,6 +78,7 @@ public class FilmCoverController {
 		return ResponseEntity
 			.ok()
 			.cacheControl(cacheControl)
+			.lastModified(cover.lastModified())
 			.eTag(etag)
 			.contentType(MediaType.IMAGE_JPEG)
 			.body(cover);
