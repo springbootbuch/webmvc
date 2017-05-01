@@ -45,15 +45,18 @@
         <table>
             <thead>
                 <tr>
-                    <th th:text="#{title}">title</th>                    
+                    <th th:text="#{title}">title</th>
                 </tr>
             </thead>
             <tfoot />
             <tbody>
                 <tr th:each="film : ${@shoppingCart.content}">
-                    <td th:text="${film.title}">Einer flog über das Kuckucksnest </td>                    
+                    <td th:text="${film.title}">
+                        Einer flog über das Kuckucksnest
+                    </td>
                     <td>
-                        <form method="POST" th:method="DELETE" th:action="@{/cart/{id}(id=${film.id})}">
+                        <form th:action="@{/cart/{id}(id=${film.id})}"
+                              method="POST" th:method="DELETE">
                             <button type="submit">Delete</button>
                         </form>
                     </td>
