@@ -22,7 +22,7 @@ public class FilmRestController {
 	}
 	
 	@GetMapping("/api/films")
-	public List<Film> index() {
+	public List<Film> getAll() {
 		return filmService.getFilms();
 	}
 }
