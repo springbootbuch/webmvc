@@ -8,6 +8,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -45,11 +46,13 @@ public class DemoFilter implements Filter {
 		FilterChain chain
 	) throws IOException, ServletException {
 		chain.doFilter(request, response);
-		LOG.info(
-			"Shopping cart is {} empty",
-			shoppingCart.get()
-				.getContent().isEmpty() ? "" : "not" 
-		);
+		if(request instanceof HttpServletRequest && ((HttpServletRequest)request).getSession(false) != null) {
+			LOG.info(
+				"Request from {}",
+				shoppingCart.get()
+					.getContent().isEmpty() ? "" : "not" 
+			);
+		}
 	}
 
 	@Override
