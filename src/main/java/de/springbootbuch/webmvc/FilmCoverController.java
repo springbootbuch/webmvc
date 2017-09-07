@@ -63,11 +63,12 @@ public class FilmCoverController {
 		Film film = filmService.getFilm(id);
 		
 		final Resource cover;
-		String etag = null;
+		final String etag;
 		CacheControl cacheControl = CacheControl.noCache();
 		if(film.getCover() == null) {
 			cover = new ClassPathResource(
 				"/reel.jpg");
+			etag = md5DigestAsHex(cover.getInputStream());
 		} else {
 			cover = new PathResource(
 				Paths.get(film.getCover().getPath()));
