@@ -48,9 +48,9 @@ public class DemoFilter implements Filter {
 		chain.doFilter(request, response);
 		if(request instanceof HttpServletRequest && ((HttpServletRequest)request).getSession(false) != null) {
 			LOG.info(
-				"Request from {}",
+				"Shopping cart is {}empty",
 				shoppingCart.get()
-					.getContent().isEmpty() ? "" : "not" 
+					.getContent().isEmpty() ? "" : "not " 
 			);
 		}
 	}
