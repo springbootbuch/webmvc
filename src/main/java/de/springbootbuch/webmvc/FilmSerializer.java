@@ -27,7 +27,7 @@ public class FilmSerializer
 		gen.writeObjectField("id", film.getId());
 		gen.writeObjectField("title", film.getTitle());
 		gen.writeObjectField(
-			"releaseYear", film.getReleaseYear());
+			"releaseYear", film.getReleaseYear().getValue());
 		gen.writeEndObject();
 	}
 }
