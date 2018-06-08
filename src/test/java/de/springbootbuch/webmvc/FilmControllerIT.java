@@ -36,7 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @WebMvcTest(
 	controllers = FilmController.class,
-	includeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {FilmsAtomView.class, FilmsCsvView.class})
+	includeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {FilmsAtomView.class, FilmsCsvView.class, WorkaroundViewResolverConfig.class})
 )
 @MockBean(classes = ShoppingCart.class, name = "shoppingCart")
 public class FilmControllerIT {
