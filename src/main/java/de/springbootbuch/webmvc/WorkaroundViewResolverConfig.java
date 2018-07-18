@@ -5,6 +5,7 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.accept.ContentNegotiationManager;
 import org.springframework.web.accept.MappingMediaTypeFileExtensionResolver;
 
@@ -21,6 +22,7 @@ import org.springframework.web.accept.MappingMediaTypeFileExtensionResolver;
  * @author @rotnroll666
  */
 @Configuration
+@Profile("gh-13424-workaround")
 public class WorkaroundViewResolverConfig {
 	@Bean
 	public BeanPostProcessor contentNegotiationManagerPostProcessor(final WebMvcProperties webMvcProperties) {
