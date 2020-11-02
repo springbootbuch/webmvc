@@ -5,9 +5,10 @@ import static java.util.Arrays.asList;
 import java.util.List;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import static org.mockito.Mockito.when;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -17,7 +18,7 @@ import org.springframework.context.annotation.FilterType;
 import org.springframework.http.MediaType;
 import static org.springframework.http.MediaType.APPLICATION_ATOM_XML;
 import static org.springframework.http.MediaType.TEXT_HTML;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -33,7 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @author Michael J. Simons
  * @author @rotnroll666
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @WebMvcTest(
 	controllers = FilmController.class,
 	includeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {FilmsAtomView.class, FilmsCsvView.class, WorkaroundViewResolverConfig.class})
@@ -52,7 +53,7 @@ public class FilmControllerIT {
 		new Film("test2", Year.of(2017))
 	);
 
-	@Before
+	@BeforeEach
 	public void initMocks() {
 		when(filmService.getFilms()).thenReturn(films);
 	}
