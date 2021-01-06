@@ -49,8 +49,8 @@ public class FilmControllerIT {
 	private MockMvc mockMvc;
 
 	private final List<Film> films = asList(
-		new Film("test", Year.of(2017)),
-		new Film("test2", Year.of(2017))
+		new Film("test", Year.of(2021)),
+		new Film("test2", Year.of(2021))
 	);
 
 	@BeforeEach
@@ -84,8 +84,8 @@ public class FilmControllerIT {
 			.andExpect(status().isOk())
 			.andExpect(view().name("films"))
 			.andExpect(content().string(""
-				+ "test;2017\n"
-				+ "test2;2017\n"
+				+ "test;2021\n"
+				+ "test2;2021\n"
 			));
 	}
 
